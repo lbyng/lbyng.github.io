@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boyang Li</title>
+    <style>
+        :root {
+            --primary: #4b2e83;
+            --gold: #b6a15d;
+            --spirit-gold: #ffc700;
+            --text: #333333;
+            --light-bg: #f9f9f9;
+            --white: #ffffff;
+            --border: #eeeeee;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--white);
+        }
+        
+        .container {
+            /* max-width: 1000px; */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header with profile info */
+        header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--white);
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            color: var(--white);
+        }
+        
+        /* Navigation container */
+        .nav-container {
+            background-color: var(--primary);
+            border-bottom: 3px solid var(--spirit-gold);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 20px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: var(--spirit-gold);
+            color: var(--primary);
+        }
+        
+        section {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+            text-align: left;
+        }
+        
+        h3 {
+            font-size: 1.3rem;
+            margin: 25px 0 15px;
+            color: var(--text);
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        
+        ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        /* Publication list */
+        .publication-item {
+            margin-bottom: 40px;
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 40px;
+        }
+        
+        .publication-item:last-child {
+            border-bottom: none;
+        }
+        
+        .pub-image {
+            width: 550px;
+            height: 280px;
+            /* object-fit: cover; */
+            object-fit: contain;
+            margin-right: 30px;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+        
+        .pub-content {
+            flex: 1;
+        }
+        
+        .pub-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+        
+        .pub-authors {
+            font-style: italic;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .pub-venue {
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+        
+        .pub-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .pub-link {
+            display: inline-block;
+            padding: 6px 12px;
+            text-decoration: none;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        
+        .pub-link:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Contact section */
+        .contact-info {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 6px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: color 0.2s ease;
+        }
+        
+        .social-icon:hover {
+            color: var(--gold);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #888;
+            font-size: 0.9rem;
+            background-color: var(--light-bg);
+            margin-top: 60px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .publication-item {
+                flex-direction: column;
+            }
+            
+            .pub-image {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            nav {
+                flex-direction: column;
+            }
+            
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container profile-container">
+            <img src="./asset/image/avatar.png" alt="Profile Photo" class="profile-image">
+            <h1>Boyang Li</h1>
+            <p>Undergraduate Student @ Computer Engineering and Applied Mathematics</p>
+            <p>University of Washington</p>
+        </div>
+    </header>
+    
+    <div class="nav-container">
+        <div class="container">
+            <nav>
+                <a href="#about">About Me</a>
+                <a href="#publications">Publications</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </div>
+    
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>Hi! I am an undergraduate student in Computer Engineering and Applied Mathematics at the University of Washington. My research interests include Robotics, ML, and CV.</p>
+            
+            <p>I am currently working on UW BioRobotics Laboratory, under the supervision of Professor Blake Hannaford and mentorship of PhD Haonan Peng.</p>
+            
+            <h3>Research Interests</h3>
+            <ul>
+                <li>Robotics</li>
+                <li>Machine Learning</li>
+                <li>Computer Vision</li>
+            </ul>
+            
+            <h3>Education</h3>
+            <ul>
+                <li><strong>BS in Computer Engineering and Applied Mathematics</strong>, University of Washington, 2022-Present</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section id="publications">
+        <div class="container">
+            <h2>Publications</h2>
+            
+            <!-- Publication 1 -->
+            <div class="publication-item">
+                <img src="./asset/image/pointarena.jpg" alt="Point Arena" class="pub-image">
+                <div class="pub-content">
+                    <div class="pub-title">Point Arena: Probing Multimodal Grounding Through Language-Guided Pointing</div>
+                    <div class="pub-authors">Long Cheng<sup>∗</sup>, Jiafei Duan<sup>∗</sup>, Yi Ru Wang<sup>†</sup>, Haoquan Fang<sup>†</sup>, <strong>Boyang Li</strong><sup>†</sup> <br>Yushan Huang, Elvis Wang, Ainaz Eftekhar, Jason Lee, Wentao Yuan, Rose Hendrix, Noah A. Smith, Fei Xia, Dieter Fox, Ranjay Krishna</div>
+                    <div class="pub-venue">ArXiv, 2025</div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/pdf/2505.09990" class="pub-link">Paper</a>
+                        <a href="https://pointarena.github.io/" class="pub-link">Project Page</a>
+                        <a href="https://github.com/pointarena/pointarena" class="pub-link">Code</a>
+                        <a href="https://huggingface.co/datasets/PointArena/pointarena-data" class="pub-link">Dataset</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Publication 2 -->
+            <div class="publication-item">
+                <img src="./asset/image/raven2-AMBF-CRTK.png" alt="RAVEN-II AMBF CRTK" class="pub-image">
+                <div class="pub-content">
+                    <div class="pub-title">AMBF-Based Simulation of RAVEN-II Surgical Robot with Realistic Control and Feedback API</div>
+                    <div class="pub-authors"><strong>Boyang Li</strong>, Haonan Peng, Natalie Chalfant, Yun-Hsuan Su, Blake Hannaford</div>
+                    <div class="pub-venue">IEEE ICRA 2025 Workshop ELSR, 2025</div>
+                    <div class="pub-links">
+                        <a href="./asset/paper/RAVEN2-AMBF-CRTK.pdf" class="pub-link">Short Paper</a>
+                        <a href="https://github.com/lbyng/raven2-ambf-crtk" class="pub-link">Code</a>
+                    </div>
+                </div>
+            </div>
+            
+    </section>
+    
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <!-- <div class="contact-info">
+                <p>Feel free to reach out to me for research collaborations, questions, or other inquiries.</p>
+                <p><strong>Email:</strong> @ </p>
+                
+                <div class="social-links">
+                    <a href="https://github.com/lbyng/" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+                </div>
+            </div> -->
+            <div class="social-links">
+                <a href="https://github.com/lbyng/" class="social-icon"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Boyang Li. All Rights Reserved.</p>
+            <p>University of Washington</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
