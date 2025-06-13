@@ -560,6 +560,20 @@
             </div> -->
             <div class="social-links">
                 <a href="https://github.com/lbyng/" class="social-icon"><i class="fab fa-github"></i></a>
+
+                <span id="email-link" class="social-icon">
+                    <i class="fas fa-envelope"></i>
+                </span>
+                <script>
+                    const user = "bli24";
+                    const domain = "uw.edu";
+                    const link = document.createElement("a");
+                    link.href = `mailto:${user}@${domain}`;
+                    link.innerHTML = '<i class="fas fa-envelope"></i>';
+                    link.className = "social-icon";
+                    document.getElementById("email-link").replaceWith(link);
+                </script>
+
                 <!-- <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
                 <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="social-icon"><i class="fab fa-google"></i></a> -->
