@@ -13,6 +13,9 @@
             --light-bg: #f9f9f9;
             --white: #ffffff;
             --border: #eeeeee;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-hover: 0 10px 20px rgba(0,0,0,0.15);
+            --transition: all 0.3s ease;
         }
         
         * {
@@ -29,7 +32,6 @@
         }
         
         .container {
-            /* max-width: 1000px; */
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
@@ -72,12 +74,6 @@
             color: var(--gold);
             border-bottom: 1px solid var(--gold);
         }
-
-        /* .external-link::after {
-            content: " \2197";
-            font-size: 0.8em;
-            vertical-align: super;
-        } */
         
         h1 {
             font-size: 2.5rem;
@@ -101,7 +97,7 @@
             text-decoration: none;
             padding: 15px 20px;
             display: inline-block;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
         nav a:hover {
@@ -153,15 +149,34 @@
             border-bottom: none;
         }
         
-        .pub-image {
-            width: 550px;
-            height: 280px;
-            /* object-fit: cover; */
-            object-fit: contain;
+        .pub-media-container {
+            width: 480px;
+            height: 270px;
             margin-right: 30px;
             border-radius: 4px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
             flex-shrink: 0;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pub-media-container .pub-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .pub-media-container.video-container {
+            background-color: #000;
+        }
+
+        .pub-media-container .pub-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .pub-content {
@@ -221,7 +236,7 @@
             background-color: white;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             height: 100%;
             display: flex;
@@ -230,7 +245,7 @@
         
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            box-shadow: var(--shadow-hover);
         }
         
         .project-card-image-container {
@@ -340,7 +355,7 @@
                 flex-direction: column;
             }
             
-            .pub-image {
+            .pub-media-container {
                 width: 100%;
                 margin-right: 0;
                 margin-bottom: 20px;
@@ -407,10 +422,37 @@
     <section id="publications">
         <div class="container">
             <h2>Publications</h2>
-            
-            <!-- Publication 1 -->
+
+            <!-- Publication 1 - Video -->
             <div class="publication-item">
-                <img src="./asset/image/pointarena.jpg" alt="Point Arena" class="pub-image">
+                <div class="pub-media-container video-container">
+                    <video class="pub-video" autoplay muted loop>
+                        <source src="./asset/image/lee2025molmoact.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>               
+                <div class="pub-content">
+                    <div class="pub-title">MolmoAct: Action Reasoning Models that can Reason in Space</div>
+                    <div class="pub-authors">Jason Lee<sup>∗</sup>, Jiafei Duan<sup>∗</sup>, Haoquan Fang<sup>∗</sup>, Yuquan Deng<sup>†</sup>, Shuo Liu<sup>†</sup>, <strong>Boyang Li</strong><sup>†</sup>, Bohan Fang<sup>†</sup>, Jieyu Zhang<sup>†</sup>, Yi Ru Wang<sup>†</sup> <br>Sangho Lee, Winson Han, Wilbert Pumacay, Angelica Wu, Rose Hendrix, Karen Farley, Eli VanderBilt, Ali Farhadi, Dieter Fox, Ranjay Krishna</div>
+                    <div class="pub-venue">Technical Report, 2025</div>
+                    <div class="pub-links">
+                        <a href="https://allenai.org/blog/molmoact" class="pub-link">Blog</a>
+                        <a href="https://arxiv.org/pdf/2508.07917v1" class="pub-link">Paper</a>
+                        <a href="https://github.com/allenai/MolmoAct" class="pub-link">Code</a>
+                        <a href="https://huggingface.co/collections/allenai/molmoact-data-mixture-6897e583e13b6c2cf3ea2b80" class="pub-link">Dataset</a>
+                        <a href="https://x.com/allen_ai/status/1955253470962872350" class="pub-link">Post</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Publication 2 - Video -->
+            <div class="publication-item">
+                <div class="pub-media-container video-container">
+                    <video class="pub-video" autoplay muted loop>
+                        <source src="./asset/image/cheng2025pointarena.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div> 
                 <div class="pub-content">
                     <div class="pub-title">Point Arena: Probing Multimodal Grounding Through Language-Guided Pointing</div>
                     <div class="pub-authors">Long Cheng<sup>∗</sup>, Jiafei Duan<sup>∗</sup>, Yi Ru Wang<sup>†</sup>, Haoquan Fang<sup>†</sup>, <strong>Boyang Li</strong><sup>†</sup> <br>Yushan Huang, Elvis Wang, Ainaz Eftekhar, Jason Lee, Wentao Yuan, Rose Hendrix, Noah A. Smith, Fei Xia, Dieter Fox, Ranjay Krishna</div>
@@ -424,9 +466,11 @@
                 </div>
             </div>
             
-            <!-- Publication 2 -->
+            <!-- Publication 3 - Image -->
             <div class="publication-item">
-                <img src="./asset/image/raven2-AMBF-CRTK.png" alt="RAVEN-II AMBF CRTK" class="pub-image">
+                <div class="pub-media-container">
+                    <img src="./asset/image/raven2-AMBF-CRTK.png" alt="RAVEN-II AMBF CRTK" class="pub-image">
+                </div>
                 <div class="pub-content">
                     <div class="pub-title">AMBF-Based Simulation of RAVEN-II Surgical Robot with Realistic Control and Feedback API</div>
                     <div class="pub-authors"><strong>Boyang Li</strong>, Haonan Peng, Natalie Chalfant, Yun-Hsuan Su, Blake Hannaford</div>
@@ -567,11 +611,6 @@
         <div class="container">
             <h2>Contact</h2>
 
-            <!-- <div class="contact-info">
-                <p>Feel free to reach out to me for research collaborations, questions, or other inquiries.</p>
-                <p><strong>Email:</strong> @ </p>
-            </div> -->
-
             <div class="social-links">
                 <a href="https://github.com/lbyng/" class="social-icon"><i class="fab fa-github"></i></a>
 
@@ -587,10 +626,6 @@
                     link.className = "social-icon";
                     document.getElementById("email-link").replaceWith(link);
                 </script>
-
-                <!-- <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-google"></i></a> -->
             </div>
         </div>
     </section>
